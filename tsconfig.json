@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist/",
+		"noImplicitAny": true,
+		"module": "es6",
+		"target": "es5",
+		"allowJs": true,
+		"moduleResolution": "node",
+		"baseUrl": ".",
+		"paths": {
+			"components/*": ["src/components/*"],
+			"functions/*": ["src/functions/*"],
+			"pages/*": ["src/pages/*"],
+			"styles/*": ["src/styles/*"],
+			"plugins/*": ["src/plugins/*"]
+		}
+	}
+}
