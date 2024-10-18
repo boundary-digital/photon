@@ -1,4 +1,4 @@
-import { handleRadioClick, handleCheckboxClick, setupDropdowns } from './functions/functions';
+import { handleRadioClick, handleCheckboxClick, setupDropdowns, checkPersonalEmail } from './functions/functions';
 
 (function introFormsControl() {
 	const emailForms = Array.from(
@@ -10,19 +10,28 @@ import { handleRadioClick, handleCheckboxClick, setupDropdowns } from './functio
 	if (!emailForms.length) return;
 
 	emailForms.forEach((form) => {
+		const errorEl: HTMLElement = form.querySelector('[data-error-el]')!;
+
 		form.addEventListener('submit', (e) => {
 			e.preventDefault();
+			errorEl.style.display = 'none';
 
 			const formData = new FormData(form);
+
+
 			const formDataObject: { [key: string]: any; } = {};
 			formData.forEach((value, key) => {
 				formDataObject[key] = value;
 			});
 
+			if (checkPersonalEmail(formDataObject['Email'])) {
+				errorEl.style.display = 'block';
+				return;
+			}
+
 			sessionStorage.clear();
 			sessionStorage.setItem('formData', JSON.stringify(formDataObject));
 
-			// check if formData has Role
 			if (formDataObject['Role'] === 'Doctor/Medical Provider') {
 				window.location.href = `/prescriber-signup`;
 				return;

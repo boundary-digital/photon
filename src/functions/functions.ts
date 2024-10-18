@@ -41,3 +41,20 @@ export function setupDropdowns(
     }
   });
 }
+
+export function checkPersonalEmail(email: string): boolean {
+  const personalEmailDomains = [
+    "gmail.com",
+    "yahoo.com",
+    "hotmail.com",
+    "aol.com",
+    "msn.com",
+    "comcast.net",
+    "live.com",
+    "outlook.com",
+    "ymail.com",
+    "icloud.com"
+  ];
+
+  return personalEmailDomains.includes(email.split('@')[1]);
+}
